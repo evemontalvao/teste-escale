@@ -1,0 +1,110 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #37474F;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 14px;
+	text-align: center;
+}
+
+main {
+	width: 940px;
+	margin: 0 auto;
+}
+
+h1 {
+	margin-top: 60px;
+	text-align: center;
+	color: #78909C;
+}
+
+input[type=text] {
+	width: 100%;
+	margin: 0 auto;
+	padding: 14px;
+	background-color: #455A64;
+	border: none;
+	margin-top: 40px;
+	color: #78909C;
+	font-size: 21px;
+}
+
+::-webkit-input-placeholder {
+  color: #78909C;
+}
+::-moz-placeholder {
+  color: #78909C;
+}
+:-ms-input-placeholder {
+  color: #78909C;
+}
+:-moz-placeholder {
+  color: #78909C;
+}
+
+.order ul li {
+	display: inline-block;
+	padding: 13px;
+	background-color: #455A64;
+	color: #78909C;
+	margin-right: 5px;
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+.order ul li:hover {
+	background-color: #607D8B;
+}
+
+.repo {
+	width: 32.3%;
+	margin: 80px auto;
+	text-align: left;
+	float: left;
+	margin-right: 1%;
+}
+
+.repo:nth-of-type(3n+0){
+	margin-right: 0;
+}
+
+.title {
+	padding: 14px;
+	background-color: #455A64;
+	color: #607D8B;
+	font-size: 18px;
+}
+
+.content {
+	background-color: #546E7A;
+	padding: 14px;
+	color: #263238;
+	min-height: 200px;
+}
+
+.content img {
+	width: 60px;
+	border-radius: 50%;
+	margin: 0 auto;
+	float: left;
+}
+
+.content p {
+	clear: both;
+}
+
+.stars, .issues {
+	float: left;
+	background-color: rgba(255,255,255,0.5);
+	padding: 8px;
+}
