@@ -6,15 +6,12 @@
 	box-sizing: border-box;
 }
 
-html, body {
-	height: 100%;
-}
-
 body {
 	background-color: #37474F;
 	font-family: 'Trebuchet MS', sans-serif;
 	font-size: 14px;
 	text-align: center;
+	height: 100%;
 }
 
 main {
@@ -28,6 +25,11 @@ h1 {
 	color: #78909C;
 }
 
+section {
+	overflow: auto;
+	overflow-y: hidden;
+	padding-bottom: 62px;
+}
 input[type=text] {
 	width: 100%;
 	margin: 0 auto;
@@ -40,18 +42,23 @@ input[type=text] {
 }
 
 ::-webkit-input-placeholder {
-  color: #78909C;
+	color: #78909C;
 }
 ::-moz-placeholder {
-  color: #78909C;
+	color: #78909C;
 }
 :-ms-input-placeholder {
-  color: #78909C;
+	color: #78909C;
 }
 :-moz-placeholder {
-  color: #78909C;
+	color: #78909C;
 }
 
+.order {
+	padding-bottom: 30px;
+	overflow: auto;
+	overflow-y: hidden;
+}
 .order ul li {
 	display: inline-block;
 	padding: 13px;
@@ -68,7 +75,7 @@ input[type=text] {
 
 .repo {
 	width: 32.3%;
-	margin: 80px auto;
+	margin: 20px auto 0;
 	text-align: left;
 	float: left;
 	margin-right: 1%;
@@ -85,11 +92,16 @@ input[type=text] {
 	font-size: 18px;
 }
 
+.title a {
+	color: #607D8B;
+}
+
 .content {
 	background-color: #546E7A;
 	padding: 14px;
 	color: #263238;
-	min-height: 200px;
+	overflow: auto;
+	overflow-y: hidden;
 }
 
 .content img {
@@ -101,10 +113,28 @@ input[type=text] {
 
 .content p {
 	clear: both;
+	margin-top: 10px;
+	float: left;
 }
 
 .stars, .issues {
 	float: left;
-	background-color: rgba(255,255,255,0.5);
+	text-align: center;
 	padding: 8px;
+}
+
+@media screen and (min-width: 768px){
+	.content {
+		min-height: 200px;
+	}
+}
+@media screen and (max-width: 768px){
+	main {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.repo {
+		width: 100%;
+	}
 }

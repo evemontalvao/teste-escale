@@ -11,9 +11,9 @@
 	ListStarredRepos.prototype.findUserRepos = function(username){
 		var url = 'https://api.github.com/users/' + username + '/starred';
 		var userRepo = localStorage.getItem(username);
-
 		if(userRepo){
 			this.filterReposByLanguage(JSON.parse(userRepo));
+			console.log(JSON.parse(userRepo));
 		} else {
 			$.getJSON(url, (function(data){
 				this.filterReposByLanguage(data);
@@ -32,6 +32,7 @@
 				jsRepos.push(repo);
 			}
 		});
+
 		this.repos = jsRepos;
 		this.showResults(jsRepos);
 
@@ -43,7 +44,7 @@
 
 		results.map((function(result, index){
 			section.push('<div class="repo">');
-			section.push('<div class="title">' + result.name + '</div>');
+			section.push('<div class="title"><a href="' + result.html_url + '" target="_blank">' + result.name + '</a></div>');
 			section.push('<div class="content">');
 			section.push('<img src="' + result.owner.avatar_url + '" class="repo-img">');
 			section.push('<span class="stars">Stars: ' + result.stargazers_count + '</span>');
@@ -59,26 +60,38 @@
 	ListStarredRepos.prototype.orderList = function(e){
 		switch(e.target.attributes['order-by'].value) {
 			case 'name':
-			this.results = this.results.sort(this.orderByName);
+			this.param = 'name';
+			this.results = this.results.sort(this.orderByAttr.bind(this));
 			this.showResults(this.results);
 			break;
-			case 'stars':
-			this.orderByStars();
+
+			case 'stargazers_count':
+			this.param = 'stargazers_count';
+			this.results = this.results.sort(this.orderByAttr.bind(this));
+			this.showResults(this.results);
 			break;
-			case 'issues':
-			this.orderByIssues();
+
+			case 'open_issues_count':
+			this.param = 'open_issues_count';
+			this.results = this.results.sort(this.orderByAttr.bind(this));
+			this.showResults(this.results);
 			break;
+
 			default:
 			console.log(e.target.attributes['order-by'].value)
 		}
 		
 	}
 
-	ListStarredRepos.prototype.orderByName = function(a,b){
-		console.log("b" + b);
-		console.log("a" + a);
-		var resultA = a.name.toUpperCase();
-		var resultB = b.name.toUpperCase();
+
+	ListStarredRepos.prototype.orderByAttr = function(a, b){
+		var resultA = a[this.param],
+			resultB = b[this.param];
+
+		if(typeof a[this.param] == 'string'){
+			resultA = a[this.param].toUpperCase();
+			resultB = b[this.param].toUpperCase();
+		}
 		var compare = 0;
 		if(resultA > resultB){
 			compare = 1;
